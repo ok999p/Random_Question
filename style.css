@@ -1,5 +1,5 @@
+
 body {
-    font-family: 'Montserrat', sans-serif;
     background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
     display: flex;
     justify-content: center;
@@ -96,7 +96,7 @@ body {
 }
 
 .question {
-    font-size: 28px;
+    font-size: 40px;
     font-weight: 600;
     color: #d4af37;
     line-height: 1.6;
@@ -112,7 +112,7 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 700;
     border-radius: 50px;
     cursor: pointer;
@@ -290,7 +290,7 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 700;
     border-radius: 50px;
     cursor: pointer;
@@ -310,7 +310,7 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 700;
     border-radius: 50px;
     cursor: pointer;
@@ -331,7 +331,7 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 700;
     border-radius: 50px;
     cursor: pointer;
@@ -356,7 +356,7 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 700;
     border-radius: 50px;
     cursor: pointer;

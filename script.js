@@ -240,7 +240,7 @@ particlesJS("particles-js", {
 
 
   let countdown;
-  let timeLeft = 5; // ตั้งค่าเวลาเริ่มต้นที่ 2 นาที (120 วินาที)
+  let timeLeft = 120; // ตั้งค่าเวลาเริ่มต้นที่ 2 นาที (120 วินาที)
   let beepInterval; // กำหนดตัวแปรสำหรับเก็บการวนซ้ำเสียง beep
   
   // ฟังก์ชันอัปเดตการแสดงผลของเวลา
@@ -268,7 +268,6 @@ particlesJS("particles-js", {
   function playBeepSound() {
     const beepSound = new Audio('./Beep2.mp3');
     beepSound.play();
-    // ตั้งให้เสียง beep ทำงานซ้ำทุก 5 วินาที
     beepInterval = setInterval(() => {
         beepSound.play();
     }, 500);
@@ -277,14 +276,14 @@ particlesJS("particles-js", {
   // ฟังก์ชันหยุดจับเวลา
   function stopTimer() {
     clearInterval(countdown);
-    clearInterval(beepInterval); // หยุดเสียง beep ที่วนซ้ำ
+    clearInterval(beepInterval);
 }
   
-  // ฟังก์ชันรีเซ็ตเวลา
+  
   function resetTimer() {
-      timeLeft = 5; // ตั้งกลับเป็น 2 นาที
+      timeLeft = 120; 
       updateTimerDisplay();
-      clearInterval(beepInterval); // หยุดเสียง beep ที่วนซ้ำ
+      clearInterval(beepInterval); 
   }
   
   // กำหนดการทำงานของปุ่ม
