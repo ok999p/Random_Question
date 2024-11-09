@@ -1,24 +1,56 @@
 const questions = [
-  "คุณชอบอาหารชนิดไหนที่สุด?",
-  "ถ้าได้เป็นนักร้อง, เพลงใดคือเพลงที่คุณอยากจะแสดง?",
-  "อาชีพในอนาคตของคุณคืออะไร?",
-  "วิธีการผ่อนคลายที่คุณชอบที่สุดคือ?",
-  "ถ้าคุณสามารถไปที่ไหนก็ได้ในโลก, คุณจะเลือกไปที่ไหน?",
-  "สิ่งที่คุณกลัวที่สุดคืออะไร?",
-  "คุณมีฮีโร่ในชีวิตจริงหรือไม่? ใครคือฮีโร่ของคุณ?",
-  "ความทรงจำที่คุณมีความสุขที่สุดในชีวิตคืออะไร?",
-  "ถ้าคุณสามารถเปลี่ยนอะไรบางอย่างในอดีตได้, คุณจะเลือกเปลี่ยนอะไร?",
-  "สัตว์อะไรที่สะท้อนถึงบุคลิกภาพของคุณมากที่สุด?",
-  "ถ้าคุณสามารถมีพลังพิเศษใดก็ได้, คุณอยากได้พลังอะไร?",
-  "สิ่งที่คุณภูมิใจที่สุดในชีวิตคืออะไร?",
-  "คุณคิดว่าคุณจะเป็นคนแบบไหนในอีก 10 ปีข้างหน้า?",
-  "หนังสือเล่มใดที่มีอิทธิพลต่อชีวิตของคุณมากที่สุด?",
-  "สิ่งที่คุณต้องการทำให้สำเร็จในปีนี้คืออะไร?",
-  "ถ้าคุณสามารถกินได้แค่อาหารชนิดเดียวตลอดไป, คุณจะเลือกอะไร?",
-  "ดนตรีประเภทไหนที่คุณชอบฟังมากที่สุด?",
-  "คุณคิดว่าความหมายของความสุขคืออะไร?",
-  "ถ้ามีเวลาและทรัพยากรไม่จำกัด, คุณจะทำอะไรเพื่อพัฒนาชุมชนของคุณ?"
+  "ความมั่นใจ (Passion/Confidence) ",
+  "จิตอาสา (Volunteering) ",
+  "ชีวิตนักศึกษา (Student Life) ",
+  "กิจกรรมนักศึกษา (Student Activities) ",
+  "ค่ายอาสา (Volunteer Camp) ",
+  "การศึกษาออนไลน์ (Online Learning) ",
+  "โอกาสทางการศึกษา (Educational Opportunities) ",
+  "WU FRESHY AWARDS ",
+  "ทัศนคติ (Attitude) ",
+  "การเรียนรู้ในยุคดิจิทัล (Learning in the Digital Era) ",
+  "ภาวะผู้นำ (Leadership) ",
+  "มหาวิทยาลัยสีเขียว (Green University) ",
+  "สังคมในมหาวิทยาลัย (University Community) ",
+  "ความเหลื่อมล้ำ (Inequality) ",
+  "สมรสเท่าเทียม (Marriage Equality) ",
+  "ความล้มเหลว (Failure) ",
+  "อนาคต (Future) ",
+  "ความสัมพันธ์ที่เป็นพิษ (Toxic Relationship) ",
+  "ความเป็นมืออาชีพ (Professionalism) ",
+  "ความเท่าเทียม (Equality) ",
+  "ความมั่นใจในตนเองสูง (High self-Confidence) ",
+  "ทรัพย์สินทางปัญญา (Intellectual Property) ",
+  "ใบโพลาร์ (Bipolar) ",
+  "สิทธิขั้นพื้นฐาน (Fundamental Rights) ",
+  "Soft Power ",
+  "Influencers ",
+  "อำนาจเงิน (Financial Power) ",
+  "ความสำเร็จ (Success) ",
+  "Safe Zone ",
+  "New Gen ",
+  "การรับฟัง (Listening) ",
+  "แรงบันดาลใจ (Inspiration) ",
+  "คุณค่าแห่งตน (Self-Worth) ",
+  "การคุกคามทางเพศ (Sexual Harassment) ",
+  "ความรัก (Love) ",
+  "เสรีภาพ (Freedom) ",
+  "การให้เกียรติ (Respectfulness) ",
+  "ความเป็นเลิศสู่สากล (Excellence to Global Standards) ",
+  "การเหยียด (Bully/Discrimination) ",
+  "ความกล้าหาญ (Courage) ",
+  "ความเคารพ (Respect)",
+  "ศรัทธา (Faith) ",
+  "วุฒิภาวะ (Maturity) ",
+  "บ้าน (Home) ",
+  "การยอมรับความจริง (Acceptance of Reality) ",
+  "ความเป็นตัวเอง (Being True to Oneself) ",
+  "โรคซึมเศร้า (Depression) ",
+  "โรคติดต่อทางเพศสัมพันธ์ (Sexually Transmitted Diseases) ",
+  "กาลเทศะ (Appropriateness) ",
+  "โลกสวย (Optimism) "
 ];
+
 
 
 let isSpinning = false;
@@ -40,7 +72,7 @@ function getRandomQuestion() {
 
 function animateSpinning() {
   const element = document.getElementById('questionDisplay');
-  const thaiChars = "กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮ";
+  const thaiChars = "@#$^%*^(&)*_(_++))^&^%#$@@#!@!##$%^^*&@#$%^&*()_+_)(*&^%$#@#$%^&*()_+_)(*&^%$#";
   const animationLength = Math.min(selectedQuestion.length, MAX_LENGTH);
 
   function spin() {
@@ -66,7 +98,7 @@ function animateFinalQuestion(question) {
   const letters = question.split("");
   const steps = letters.length;
   const map = (n, x1, y1, x2, y2) => Math.min(Math.max(((n - x1) * (y2 - x2)) / (y1 - x1) + x2, x2), y2);
-  const thaiChars = "กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรลวศษสหฬอฮ";
+  const thaiChars = "@#$^%*^(&)*_(_++))^&^%#$@@#!@!##$%^^*&@#$%^&*()_+_)(*&^%$#@#$%^&*()_+_)(*&^%$#";
   const random = () => thaiChars[Math.floor(Math.random() * thaiChars.length)];
 
   function animate() {
@@ -270,7 +302,7 @@ particlesJS("particles-js", {
     beepSound.play();
     beepInterval = setInterval(() => {
         beepSound.play();
-    }, 500);
+    }, 3000);
 }
   
   // ฟังก์ชันหยุดจับเวลา
@@ -324,7 +356,7 @@ function resetQuestion() {
   }).then((result) => {
       if (result.isConfirmed) {
           const questionDisplay = document.getElementById('questionDisplay');
-          questionDisplay.innerText = "คำถามสำหรับ ดาวเดือน"; // ตั้งค่าคำถามเริ่มต้น
+          questionDisplay.innerText = "คำถามสำหรับผู้เข้าประกวด"; // ตั้งค่าคำถามเริ่มต้น
           usedQuestions.clear(); // ล้างชุดคำถามที่เคยใช้ไปแล้ว
           document.getElementById('generateButton').disabled = false; // เปิดใช้งานปุ่มสุ่มคำถามอีกครั้ง
 
