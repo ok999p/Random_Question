@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #2E1F3E 0%, #4A2F66 100%);
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            position: relative;
+            height: 800px;
+        }
+
+        .game-window {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .mascot-area {
+            width: 450px;
+            height: 650px;
+            margin-left: 1rem;
+            min-width: 15rem;
+            min-height: auto;
+        }
+
+        .mascot {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .placeholder-mascot {
+            width: 100%;
+            height: 100%;
+            background: rgba(123, 91, 166, 0.1);
+            border: 1px solid rgba(123, 91, 166, 0.3);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .dialogue-container {
+            flex: 1;
+            position: relative;
+            padding-right: 2rem;
+        }
+
+        .dialogue-box {
+            background: rgba(123, 91, 166, 0.15);
+            border: 1px solid rgba(243, 116, 34, 0.3);
+            border-radius: 30px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+                        0 0 50px rgba(243, 116, 34, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .timer-display {
+            font-size: 7em;
+            font-weight: 300;
+            text-align: center;
+            color: #F37422;
+            text-shadow: 0 0 20px rgba(243, 116, 34, 0.3);
+            letter-spacing: 0.05em;
+            margin: 20px 0 30px 0;
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 30px;
+            padding: 0 20%;
+        }
+
+        .btn {
+            flex: 1;
+            color: white;
+            border: none;
+            padding: 12px 0;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: rgba(123, 91, 166, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .btn:hover {
+            background: rgba(243, 116, 34, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .keyboard-shortcut {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.5);
+            background: rgba(123, 91, 166, 0.3);
+            padding: 2px 8px;
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        .time-label {
+            text-align: center;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(243, 116, 34, 0.7);
+            margin-bottom: -10px;
+            font-weight: 400;
+        }
+
+        .shortcut-guide {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            position: relative;
+            height: 800px;
+        }
+
+        .game-window {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .mascot-area {
+            width: 450px;
+            height: 650px;
+            margin-left: 50px;
+        }
+
+        .placeholder-mascot {
+            width: 100%;
+            height: 100%;
+            background: rgba(123, 91, 166, 0.1);
+            border: 1px solid rgba(123, 91, 166, 0.3);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .dialogue-container {
+            flex: 1;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .dialogue-box {
+            background: rgba(123, 91, 166, 0.15);
+            border: 1px solid rgba(243, 116, 34, 0.3);
+            border-radius: 30px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+                        0 0 50px rgba(243, 116, 34, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .timer-display {
+            font-size: 7em;
+            font-weight: 300;
+            text-align: center;
+            color: #F37422;
+            text-shadow: 0 0 20px rgba(243, 116, 34, 0.3);
+            letter-spacing: 0.05em;
+            margin: 20px 0 30px 0;
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 30px;
+            padding: 0 20%;
+        }
+
+        .btn {
+            flex: 1;
+            color: white;
+            border: none;
+            padding: 12px 0;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: rgba(123, 91, 166, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .btn:hover, .btn.selected {
+            background: rgba(243, 116, 34, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .time-label {
+            text-align: center;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(243, 116, 34, 0.7);
+            margin-bottom: -10px;
+            font-weight: 400;
+        }
+  
+
+        .timer-display {
+            font-size: 7em;
+            font-weight: 300;
+            text-align: center;
+            color: #F37422;
+            text-shadow: 0 0 20px rgba(243, 116, 34, 0.3);
+            letter-spacing: 0.05em;
+            margin: 20px 0 30px 0;
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 30px;
+            padding: 0 20%;
+        }
+
+        .btn {
+            flex: 1;
+            color: white;
+            border: none;
+            padding: 12px 0;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: rgba(123, 91, 166, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .btn:hover, .btn.selected {
+            background: rgba(243, 116, 34, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .keyboard-shortcut {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(243, 116, 34, 0.2);
+            padding: 3px 8px;
+            border-radius: 8px;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .time-label {
+            text-align: center;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(243, 116, 34, 0.7);
+            margin-bottom: -10px;
+            font-weight: 400;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="game-window">
+            <div class="mascot-area">
+                <img src="../Batjii.png" alt="Mascot" style="width: 100%; height: 100%; object-fit: contain;" class="mascot">
+            </div>
+            <div class="dialogue-container">
+                <div class="dialogue-box">
+                    <div class="time-label">Elapsed Time</div>
+                    <div class="timer-display">00:00:00</div>
+                    <div class="controls">
+                        <button class="btn btn-start" onclick="startTimer()">
+                            Start
+                        </button>
+                        <button class="btn btn-stop" onclick="stopTimer()">
+                            Stop
+                        </button>
+                        <button class="btn btn-reset" onclick="resetTimer()">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+         let startTime;
+        let elapsedTime = 0;
+        let timerInterval;
+        let isRunning = false;
+        let selectedButton = 0;
+        const buttons = document.querySelectorAll('.btn');
+
+        function updateDisplay(time) {
+            const hours = Math.floor(time / 3600000);
+            const minutes = Math.floor((time % 3600000) / 60000);
+            const seconds = Math.floor((time % 60000) / 1000);
+            const display = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            document.querySelector('.timer-display').textContent = display;
+        }
+
+        function startTimer() {
+            if (!isRunning) {
+                isRunning = true;
+                startTime = Date.now() - elapsedTime;
+                timerInterval = setInterval(() => {
+                    elapsedTime = Date.now() - startTime;
+                    updateDisplay(elapsedTime);
+                }, 10);
+                document.querySelector('.btn-start').style.display = 'none';
+                document.querySelector('.btn-stop').style.display = 'inline-block';
+                selectButton(1); // Move selection to stop button
+            }
+        }
+
+        function stopTimer() {
+            if (isRunning) {
+                isRunning = false;
+                clearInterval(timerInterval);
+                document.querySelector('.btn-start').style.display = 'inline-block';
+                selectButton(0); 
+            }
+        }
+
+        function resetTimer() {
+            isRunning = false;
+            clearInterval(timerInterval);
+            elapsedTime = 0;
+            updateDisplay(0);
+            document.querySelector('.btn-start').style.display = 'inline-block';
+            document.querySelector('.btn-stop').style.display = 'inline-block';
+            selectButton(0); // Move selection to start button
+        }
+
+        function selectButton(index) {
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            selectedButton = index;
+            buttons[selectedButton].classList.add('selected');
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                selectButton(Math.max(0, selectedButton - 1));
+            } else if (event.key === 'ArrowRight') {
+                event.preventDefault();
+                selectButton(Math.min(buttons.length - 1, selectedButton + 1));
+            } else if (event.key === ' ' || event.key === 'Enter') {
+                event.preventDefault();
+                buttons[selectedButton].click();
+            }
+        });
+
+        // Initial setup
+        document.querySelector('.btn-stop').style.display = 'inline-block';
+        updateDisplay(0);
+    </script>
+</body>
+</html>

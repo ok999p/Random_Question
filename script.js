@@ -95,36 +95,36 @@ let usedQuestions = new Set();
 let lightSpeed = 4; // ความเร็วเริ่มต้นของแสง (หน่วยเป็นวินาที)
 const MAX_LENGTH = 25; // กำหนดความยาวสูงสุดเป็น 25
 
-function getRandomQuestion() {
-    const availableQuestions = questions.filter(q => !usedQuestions.has(q));
-    if (availableQuestions.length === 0) {
-        return "หมดคำถาม";
-    }
-    const question = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
-    usedQuestions.add(question);
-    return question;
-}
+// function getRandomQuestion() {
+//     const availableQuestions = questions.filter(q => !usedQuestions.has(q));
+//     if (availableQuestions.length === 0) {
+//         return "หมดคำถาม";
+//     }
+//     const question = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+//     usedQuestions.add(question);
+//     return question;
+// }
 
-function animateSpinning() {
-  const element = document.getElementById('questionDisplay');
-  const thaiChars = "@#$^%*^(&)*_(_++))^&^%#$@@#!@!##$%^^*&@#$%^&*()_+_)(*&^%$#@#$%^&*()_+_)(*&^%$#";
-  const animationLength = Math.min(selectedQuestion.length, MAX_LENGTH);
+// function animateSpinning() {
+//   const element = document.getElementById('questionDisplay');
+//   const thaiChars = "@#$^%*^(&)*_(_++))^&^%#$@@#!@!##$%^^*&@#$%^&*()_+_)(*&^%$#@#$%^&*()_+_)(*&^%$#";
+//   const animationLength = Math.min(selectedQuestion.length, MAX_LENGTH);
 
-  function spin() {
-      if (!isSpinning) return;
-      element.innerText = Array(animationLength).fill()
-          .map(() => thaiChars[Math.floor(Math.random() * thaiChars.length)])
-          .join("");
-      animationFrame = requestAnimationFrame(spin);
-  }
-  spin();
-}
+//   function spin() {
+//       if (!isSpinning) return;
+//       element.innerText = Array(animationLength).fill()
+//           .map(() => thaiChars[Math.floor(Math.random() * thaiChars.length)])
+//           .join("");
+//       animationFrame = requestAnimationFrame(spin);
+//   }
+//   spin();
+// }
 
-function stopSpinning() {
-    isSpinning = false;
-    cancelAnimationFrame(animationFrame);
-    animateFinalQuestion(selectedQuestion);
-}
+// function stopSpinning() {
+//     isSpinning = false;
+//     cancelAnimationFrame(animationFrame);
+//     animateFinalQuestion(selectedQuestion);
+// }
 
 function animateFinalQuestion(question) {
   const element = document.getElementById('questionDisplay');
